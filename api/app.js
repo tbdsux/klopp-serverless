@@ -98,7 +98,6 @@ app.post('/', async (req, res) => {
   const errors = validationResult(req)
 
   if (!errors.isEmpty()) {
-    console.log(errors)
     tweets
       .find()
       .sort({ tweet_date: -1 })
@@ -118,7 +117,6 @@ app.post('/', async (req, res) => {
       tweet_date: moment(now).format('MMMM D, YYYY | hh:mm A'),
     }
 
-    console.log(randomTweet) // log the content
     tweets
       .insertOne(randomTweet)
       .then((result) => {
