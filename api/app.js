@@ -114,7 +114,7 @@ app.post('/', async (req, res) => {
     var randomTweet = {
       tweet_user: req.body.user,
       tweet_content: req.body.content,
-      tweet_date: moment(now).format('MMMM D, YYYY | hh:mm A'),
+      tweet_date: moment(now).format('MMMM D, YYYY | hh:mm A UTC'), // format already the date, I'm tired :)
     }
 
     tweets
