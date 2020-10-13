@@ -1,0 +1,91 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+  <!-- header -->
+  <div class="py-4 text-center">
+    <h1 class="font-bold text-3xl tracking wide">
+      Klopp | Simple Tweeter
+    </h1>
+    <p class="font-light text-lg tracking-wide">
+      You can post anything you want in here...
+    </p>
+  </div>
+
+  <!-- some notification -->
+  {% if success %}
+    <div class="text-center w-11/12 sm:w-4/5 md:w-3/4 lg:w-1/2 mx-auto">
+      <p class="py-1 rounded text-white bg-green-600">
+        {{ success }}
+      </p>
+    </div>
+  {% endif %}
+
+  <!-- error notification -->
+  {% if errors %}
+    {% for error in errors.errors %}
+      <div class="text-center w-11/12 sm:w-4/5 md:w-3/4 lg:w-1/2 mx-auto py-1">
+        <p class="py-1 rounded text-white bg-red-600">
+          {{ error.msg }}
+        </p>
+      </div>
+    {% endfor %}
+  {% endif %}
+
+  <!-- post form -->
+  <div class="py-4 w-11/12 sm:w-4/5 md:w-3/4 lg:w-1/2 mx-auto">
+    <form action="/" method="post" name="random-tweet">
+      <div class="flex items-center justify-center flex-col w-full py-2">
+        <label for="tweet-content font-light tracking-wide">
+          What do you want to tweet?
+        </label>
+        <textarea required
+          name="content"
+          class="text-center py-4 w-full border-2 rounded h-24"
+          placeholder="Enter something to tweet"></textarea>
+      </div>
+      <div class="flex items-center justify-center flex-col w-full py-2">
+        <label for="tweet-content font-light tracking-wide">Your name:</label>
+        <input class="text-center py-4 w-full border-2 rounded"
+          name="user"
+          type="text"
+          placeholder="Enter your name" />
+      </div>
+      <div class="flex items-center justify-center flex-col w-full py-2">
+        <input required
+          type="submit"
+          value="Tweet"
+          class="py-2 px-10 text-sm uppercase tracking-wide font-bold rounded bg-blue-500 text-white hover:bg-blue-600 cursor-pointer" />
+      </div>
+    </form>
+  </div>
+
+  <hr class="w-11/12 sm:w-5/6 md:w-4/5 lg:w-3/4 xl:w-2/3 mx-auto my-4" />
+
+  <!-- recent posts -->
+  <div class="w-11/12 sm:w-5/6 md:w-4/5 lg:w-2/3 xl:w-1/2 mx-auto p-4">
+    <h4 class="mb-6 underline">
+      Recent Tweets:
+    </h4>
+    <!-- mapped twwets > container -->
+    <div>
+      {% if tweets %}
+        {% for tweet in tweets %}
+          <!-- random user tweet > container -->
+          <div class="border-t border-b p-4">
+            <h3 class="font-light tracking-wide">
+              <strong class="font-bold">{{ tweet.tweet_user }}</strong>
+              <span class="font-normal text-sm">
+                ({{ tweet.tweet_date }})
+              </span> tweeted:
+            </h3>
+            <div class="p-4 border rounded">
+              <blockquote class="font-light tracking-wide text-lg">
+                "{{ tweet.tweet_content }}"
+              </blockquote>
+            </div>
+          </div>
+        {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}
