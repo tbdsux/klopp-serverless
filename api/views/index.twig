@@ -38,21 +38,30 @@
         <label for="tweet-content font-light tracking-wide">
           What do you want to tweet?
         </label>
-        <textarea required
-          name="content"
-          class="text-center py-4 w-full border-2 rounded h-24"
-          placeholder="Enter something to tweet"></textarea>
+        <div class="w-full flex flex-row relative">
+          <textarea id="tweet-content"
+            required
+            name="content"
+            class="text-center py-4 w-full border-2 rounded h-24"
+            placeholder="Enter something to tweet"></textarea>
+          <button id="trigger" class="absolute top-0 right-0 mt-1 mr-1">
+            <img id="trigger-img"
+              src="images/happy.png"
+              alt=""
+              class="w-5 h-5" />
+          </button>
+        </div>
       </div>
       <div class="flex items-center justify-center flex-col w-full py-2">
         <label for="tweet-content font-light tracking-wide">Your name:</label>
-        <input class="text-center py-4 w-full border-2 rounded"
+        <input required
+          class="text-center py-4 w-full border-2 rounded"
           name="user"
           type="text"
           placeholder="Enter your name" />
       </div>
       <div class="flex items-center justify-center flex-col w-full py-2">
-        <input required
-          type="submit"
+        <input type="submit"
           value="Tweet"
           class="py-2 px-10 text-sm uppercase tracking-wide font-bold rounded bg-blue-500 text-white hover:bg-blue-600 cursor-pointer" />
       </div>
