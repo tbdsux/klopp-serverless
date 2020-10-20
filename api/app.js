@@ -112,7 +112,7 @@ app.post(
       var randomTweet = {
         tweet_user: req.body.user,
         tweet_content: req.body.content,
-        tweet_date: moment().utc().format('MMMM D, YYYY LTS'),
+        tweet_date: moment().utc().format('LLL'),
       }
 
       tweets
