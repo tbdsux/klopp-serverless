@@ -109,11 +109,10 @@ app.post(
         })
     } else {
       // if data is valid, save the content
-      const now = new Date(new Date().toUTCString())
       var randomTweet = {
         tweet_user: req.body.user,
         tweet_content: req.body.content,
-        tweet_date: moment(now).format('MMMM D, YYYY | hh:mm A UTC'), // format already the date, I'm tired :)
+        tweet_date: moment().utc().format('MMMM D, YYYY LTS'),
       }
 
       tweets

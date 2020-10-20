@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development postcss tailwind.css -o public/css/style.css",
+    "development": "cross-env NODE_ENV=development postcss tailwind.css -o public/css/style.css",
     "build": "cross-env NODE_ENV=production postcss tailwind.css -o public/css/style.css"
   },
   "keywords": [],
