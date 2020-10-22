@@ -11,8 +11,8 @@
     </p>
   </div>
 
-  <!-- some notification -->
   {% if success %}
+    <!-- some notification -->
     <div class="text-center w-11/12 sm:w-4/5 md:w-3/4 lg:w-1/2 mx-auto">
       <p class="py-1 rounded text-white bg-green-600">
         {{ success }}
@@ -20,8 +20,8 @@
     </div>
   {% endif %}
 
-  <!-- error notification -->
   {% if errors %}
+    <!-- error notification -->
     {% for error in errors.errors %}
       <div class="text-center w-11/12 sm:w-4/5 md:w-3/4 lg:w-1/2 mx-auto py-1">
         <p class="py-1 rounded text-white bg-red-600">
@@ -32,7 +32,7 @@
   {% endif %}
 
   <!-- post form -->
-  <div class="py-4 w-11/12 sm:w-4/5 md:w-3/4 lg:w-1/2 mx-auto">
+  <div class="py-2 w-11/12 sm:w-4/5 md:w-3/4 lg:w-1/2 mx-auto">
     <form action="/" method="post" name="random-tweet">
       <div class="flex items-center justify-center flex-col w-full py-2">
         <label for="tweet-content font-light tracking-wide">
@@ -42,7 +42,7 @@
           <textarea id="tweet-content"
             required
             name="content"
-            class="text-center py-4 w-full border-2 rounded h-24"
+            class="text-center py-4 w-full border-2 focus:outline-none focus:border-blue-600 focus:text-blue-600 rounded h-24"
             placeholder="Enter something to tweet"></textarea>
           <button id="trigger" class="absolute top-0 right-0 mt-1 mr-1">
             <img id="trigger-img"
@@ -55,7 +55,7 @@
       <div class="flex items-center justify-center flex-col w-full py-2">
         <label for="tweet-content font-light tracking-wide">Your name:</label>
         <input required
-          class="text-center py-4 w-full border-2 rounded"
+          class="text-center py-4 w-full border-2 focus:outline-none focus:border-blue-600 focus:text-blue-600 rounded"
           name="user"
           type="text"
           placeholder="Enter your name" />
@@ -80,15 +80,15 @@
       {% if tweets %}
         {% for tweet in tweets %}
           <!-- random user tweet > container -->
-          <div class="border-t border-b p-4">
+          <div class="border-t border-b p-4 my-1">
             <h3 class="font-light tracking-wide">
-              <strong class="font-bold">{{ tweet.tweet_user }}</strong>
-              <span class="font-normal text-sm">
-                ({{ tweet.tweet_date }})
-              </span> tweeted:
+              <strong class="font-extrabold underline tracking-wide text-blue-700">
+                {{ tweet.tweet_user }}
+              </strong>
+              <span class="font-normal text-sm">({{ tweet.tweet_date }})</span> tweeted:
             </h3>
-            <div class="px-4 py-8 border rounded text-center">
-              <blockquote class="font-light tracking-wide text-lg">
+            <div class="px-4 py-8 border rounded text-center text-white bg-blue-600">
+              <blockquote class="tracking-wide text-lg">
                 {{ tweet.tweet_content }}
               </blockquote>
             </div>
