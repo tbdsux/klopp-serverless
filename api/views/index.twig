@@ -34,6 +34,7 @@
   <!-- post form -->
   <div class="py-2 w-11/12 sm:w-4/5 md:w-3/4 lg:w-1/2 mx-auto">
     <form action="/" method="post" name="random-tweet">
+      <input type="hidden" name="_csrf" value="{{ csrfToken }}" />
       <div class="flex items-center justify-center flex-col w-full py-2">
         <label for="tweet-content font-light tracking-wide">
           What do you want to tweet?

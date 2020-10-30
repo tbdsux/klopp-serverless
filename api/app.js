@@ -8,9 +8,14 @@ const app = express()
 // other required
 const path = require('path')
 const bodyParser = require('body-parser')
+const cookieParser = require('cookie-parser')
 
 // date parser
 const moment = require('moment')
+
+// csurf
+const csurf = require('csurf')
+const csrfProtection = csurf({ cookie: true })
 
 // set the view engine
 app.set('views', path.join(__dirname, 'views'))
@@ -21,6 +26,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(bodyParser.urlencoded({ extended: true }))
+app.use(cookieParser())
 
 // setup the database connection
 const MongoClient = require('mongodb').MongoClient
@@ -57,7 +63,7 @@ const websiteTitle = 'Klopp - a Public Tweeter'
 const { body, validationResult } = require('express-validator')
 
 // default index route
-app.get('/', async (req, res) => {
+app.get('/', csrfProtection, async (req, res) => {
   // get connection to the db
   const db = await connectToDB()
 
@@ -68,13 +74,18 @@ app.get('/', async (req, res) => {
     .find()
     .sort({ tweet_date: -1 })
     .toArray(function (err, posts) {
-      res.render('index', { title: websiteTitle, tweets: posts })
+      res.render('index', {
+        title: websiteTitle,
+        tweets: posts,
+        csrfToken: req.csrfToken(),
+      })
     })
 })
 
 // post the tweet
 app.post(
   '/',
+  csrfProtection,
   [
     body('content')
       .isLength({ min: 10 })
@@ -127,6 +138,7 @@ app.post(
                 title: websiteTitle,
                 tweets: posts,
                 success: success,
+                csrfToken: req.csrfToken(),
               })
             })
         })
@@ -134,6 +146,9 @@ app.post(
     }
   },
 )
+
+// API - for other specific purposes
+app.get('/api/tweets', async (req, res) => {})
 
 // export the app
 module.exports = app
