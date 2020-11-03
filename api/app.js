@@ -72,7 +72,7 @@ app.get('/', csrfProtection, async (req, res) => {
 
   tweets
     .find()
-    .sort({ tweet_date: -1 })
+    .sort({ tweet_datetime: -1 })
     .toArray(function (err, posts) {
       res.render('index', {
         title: websiteTitle,
@@ -124,6 +124,7 @@ app.post(
         tweet_user: req.body.user,
         tweet_content: req.body.content,
         tweet_date: moment().utc().format('LLL UTC'),
+        tweet_datetime: moment().utc().format(),
       }
 
       tweets
