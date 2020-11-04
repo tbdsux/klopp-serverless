@@ -151,5 +151,17 @@ app.post(
 // API - for other specific purposes
 app.get('/api/tweets', async (req, res) => {})
 
+// 404 error
+app.use((req, res, next) => {
+  res.status(404)
+  res.render('error', { message: 'Not Found!', status: 404 })
+})
+
+// 500 error
+app.use((req, res, next) => {
+  res.status(500)
+  res.render('error', { message: 'Internal Server Error!', status: 500 })
+})
+
 // export the app
 module.exports = app

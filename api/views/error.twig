@@ -1,6 +1,21 @@
 {% extends 'layout.twig' %}
 
+{% block title %}
+  {{ status }} {{ message }}
+{% endblock %}
+
 {% block body %}
-  <h1>{{message}}</h1>
-  <h2>{{error.status}}</h2>
+  <div class="flex items-center justify-center h-screen">
+    <div class="text-center">
+      <h1 class="font-black text-4xl">
+        {{ status }}
+      </h1>
+      <h2 class="font-extrabold text-3xl tracking-wide">
+        {{ message }}
+      </h2>
+      <p class="font-light mt-4">
+        Copyrights &copy; Klopp 2020
+      </p>
+    </div>
+  </div>
 {% endblock %}

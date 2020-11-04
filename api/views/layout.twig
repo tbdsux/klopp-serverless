@@ -11,7 +11,12 @@
       rel="stylesheet" />
     <link rel="stylesheet" href="css/style.css" />
     <title>
-      {{ title }}
+      {% if status %}
+        {% block title %}
+        {% endblock %}
+      {% else %}
+        {{ title }}
+      {% endif %}
     </title>
   </head>
   <body class="antialiased w-full h-full">
